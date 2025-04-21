@@ -53,7 +53,6 @@ module.exports.getAllPost = getAllPost = async (req, res) => {
     const skipNumber=(pageNumber-1)*limitNumber;
     
     const AllPost = await Post.find()
-    .sort({ createdAt: -1 }) // Newest post first
     .skip(skipNumber)
     .limit(limitNumber)
     .populate("author", "firstName lastName email isVerified");
@@ -201,9 +200,9 @@ module.exports.searchByCategory = searchByCategory =  async (req, res) => {
   module.exports.postLikes= postLikes = async (req, res) => {
     try {
         const userId= req.Id;
-        console.log(userId);
+     
         const postId = req.params.id;
-        console.log(postId);
+  
         
         
       const post = await Post.findById(postId);

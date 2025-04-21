@@ -90,8 +90,16 @@ module.exports.VerifyOtp = verifyOtp = async (req, res) => {
 
     const token= await User.generateAuthToken();
 
-    res.cookie('token',token);
-    res.setHeader('Authorization',`Barear ${token}`)
+    res
+    .cookie('token', token,
+       {
+      httpOnly: true,
+      secure: true,        
+      sameSite: 'None',    
+    }
+  )
+    .set('Authorization', `Bearer ${token}`)
+
 
 
     res.status(200).json({
@@ -151,7 +159,15 @@ module.exports.loginUser=loginUser= async (req,res)=>{
       }
       const token = await user.generateAuthToken();
 
-      res.cookie('token',token).setHeader('Authorization',`Barear ${token}`);
+      res
+      .cookie('token', token, 
+        {
+        httpOnly: true,
+        secure: true,        
+        sameSite: 'None',    
+      }
+    )
+      .set('Authorization', `Bearer ${token}`)
 
       res.status(200).json({
         message: "User logged in successfully",
