@@ -5,7 +5,7 @@ const UserAuth = (req, res, next) => {
       
 
     const token =
-      req.header("Authorization")?.split(" ")[1] || req.cookies.token;
+      req.cookies.token || req.header("Authorization")?.split(" ")[1];
 
       
       
