@@ -92,11 +92,11 @@ module.exports.VerifyOtp = verifyOtp = async (req, res) => {
 
     res
     .cookie('token', token,
-    //    {
-    //   httpOnly: true,
-    //   secure: true,        
-    //   sameSite: 'None',    
-    // }
+       {
+      httpOnly: true,
+      secure: true,        
+      sameSite: 'None',    
+    }
   )
     .set('Authorization', `Bearer ${token}`)
 
@@ -161,11 +161,11 @@ module.exports.loginUser=loginUser= async (req,res)=>{
 
       res
       .cookie('token', token, 
-      //   {
-      //   httpOnly: true,
-      //   secure: true,        
-      //   sameSite: 'None',    
-      // }
+        {
+        httpOnly: true,
+        secure: true,        
+        sameSite: 'None',    
+      }
     )
       .set('Authorization', `Bearer ${token}`)
 

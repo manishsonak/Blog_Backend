@@ -6,6 +6,9 @@ const UserAuth = (req, res, next) => {
 
     const token =
       req.header("Authorization")?.split(" ")[1] || req.cookies.token;
+
+      
+      
     if (!token) {
  
       return res
