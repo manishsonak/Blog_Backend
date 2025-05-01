@@ -195,8 +195,11 @@ module.exports.logOut=logOut = async (req,res)=>{
     if(!user){
       return res.status(400).json({msg:"Invalid user"})
     }
-    req.header('Authorization')?.replace('Bearer ','');
-    res.clearCookie('token');
+    res.clearCookie('token', {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'None',
+});
     res.status(200).json({ message: "Logged out successfully" });
     
   } catch (error) {
